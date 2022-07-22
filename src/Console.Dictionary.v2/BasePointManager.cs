@@ -4,8 +4,6 @@ namespace Console.Dictionary.v2;
 
 public class BasePointManager
 {
-    private const int DoubleUp = 2;
-
     private readonly Dictionary<PokemonType, Func<FightingGroundType, int>> _basePointMapDelegates = new Dictionary<PokemonType, Func<FightingGroundType, int>>
     {
         { PokemonType.NORMAL, GetHitPointForNormalType },
@@ -15,8 +13,6 @@ public class BasePointManager
         { PokemonType.FIRE, GetHitPointForFireType },
         { PokemonType.BUG, GetHitPointForBugType }
     };
-
-    public BasePointManager() {}
 
     /// <summary>
     /// Execute calculation of hit points with dictionary

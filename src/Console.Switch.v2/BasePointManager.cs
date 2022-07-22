@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.v2;
+﻿using Domain.v2;
 
 namespace Console.Switch.v2
 {
     public class BasePointManager
     {
-        private const int DoubleUp = 2;
-
-        public BasePointManager() { }
-
         /// <summary>
         /// Execute calculation of hit points with switch statements
         /// </summary>
