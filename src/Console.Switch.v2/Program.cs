@@ -1,10 +1,14 @@
-﻿namespace Console.Switch.v2
+﻿using Domain.v2;
+
+namespace Console.Switch.v2
 {
     internal class Program
     {
         static void Main()
         {
-            System.Console.WriteLine("Hello, World!");
+            var result = new BasePointManager().GetHitPoint(pokemonType: PokemonType.ELECTRIC, groundType: FightingGroundType.AIR);
+            System.Console.WriteLine($"The result of the operation managed with switch is {result}");
+            System.Console.ReadKey();
         }
     }
 }
