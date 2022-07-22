@@ -6,7 +6,7 @@ public class BasePointManager
 {
     private const int DoubleUp = 2;
 
-    private readonly Dictionary<PokemonType, Func<bool, int>> _basePointMapDelegates = new Dictionary<PokemonType, Func<bool, int>>
+    private readonly Dictionary<PokemonType, Func<FightingGroundType, int>> _basePointMapDelegates = new Dictionary<PokemonType, Func<FightingGroundType, int>>
     {
         { PokemonType.NORMAL, GetHitPointForNormalType },
         { PokemonType.GRASS, GetHitPointForGrassType },
@@ -21,71 +21,71 @@ public class BasePointManager
     /// <summary>
     /// Execute calculation of hit points with dictionary
     /// </summary>
-    /// <param name="type"></param>
-    /// <param name="hasBonus"></param>
+    /// <param name="pokemonType"></param>
+    /// <param name="groundType"></param>
     /// <returns></returns>
-    public int GetHitPoint(PokemonType type, bool hasBonus = false)
+    public int GetHitPoint(PokemonType pokemonType, FightingGroundType groundType)
     {
-        return _basePointMapDelegates.ContainsKey(type) ? _basePointMapDelegates[type].Invoke(hasBonus) : 0;
+        return _basePointMapDelegates.ContainsKey(pokemonType) ? _basePointMapDelegates[pokemonType].Invoke(groundType) : 0;
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    private static int GetHitPointForBugType(bool hasBonus)
+    private static int GetHitPointForBugType(FightingGroundType groundType)
     {
         // Do some stuff and return value
-        return hasBonus ? 6 * DoubleUp : 6;
+        return (int)(groundType == FightingGroundType.AIR ? HitType.WEAK : HitType.SUPER_EFFECTIVE);
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    private static int GetHitPointForFireType(bool hasBonus)
+    private static int GetHitPointForFireType(FightingGroundType groundType)
     {
         // Do some stuff and return value
-        return hasBonus ? 5 * DoubleUp : 5;
+        return (int)(groundType == FightingGroundType.GROUND  || groundType == FightingGroundType.WATER ? HitType.SUPER_WEAK : HitType.SUPER_EFFECTIVE);
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    private static int GetHitPointForWaterType(bool hasBonus)
+    private static int GetHitPointForWaterType(FightingGroundType groundType)
     {
         // Do some stuff and return value
-        return hasBonus ? 4 * DoubleUp : 4;
+        return (int)(groundType == FightingGroundType.GROUND ? HitType.WEAK : HitType.SUPER_EFFECTIVE);
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    private static int GetHitPointForElectricType(bool hasBonus)
+    private static int GetHitPointForElectricType(FightingGroundType groundType)
     {
         // Do some stuff and return value
-        return hasBonus ? 3 * DoubleUp : 3;
+        return (int)(groundType == FightingGroundType.GROUND ? HitType.WEAK : HitType.EFFECTIVE);
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    private static int GetHitPointForGrassType(bool hasBonus)
+    private static int GetHitPointForGrassType(FightingGroundType groundType)
     {
         // Do some stuff and return value
-        return hasBonus ? 2 * DoubleUp : 2;
+        return (int)(groundType == FightingGroundType.AIR ? HitType.SUPER_WEAK : HitType.EFFECTIVE);
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    private static int GetHitPointForNormalType(bool hasBonus)
+    private static int GetHitPointForNormalType(FightingGroundType groundType)
     {
         // Do some stuff and return value
-        return hasBonus ? DoubleUp : 1;
+        return (int)HitType.WEAK;
     }
 }

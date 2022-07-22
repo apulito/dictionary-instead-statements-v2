@@ -6,7 +6,7 @@ namespace Console.Dictionary.v2
     {
         static void Main()
         {
-            var result = new BasePointManager().GetHitPoint(type: PokemonType.ELECTRIC, hasBonus: true);
+            var result = new BasePointManager().GetHitPoint(pokemonType: PokemonType.ELECTRIC, groundType: FightingGroundType.AIR);
             System.Console.WriteLine($"The result of the operation managed with dictionary is {result}");
             System.Console.ReadKey();
         }
