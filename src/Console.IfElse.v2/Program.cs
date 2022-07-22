@@ -8,6 +8,6 @@ internal class Program
     {
         var result = new BasePointManager().GetHitPoint(pokemonType: PokemonType.ELECTRIC, groundType: FightingGroundType.AIR);
         System.Console.WriteLine($"The result of the operation managed with ifelse ladder is {result}");
-        System.Console.ReadKey();
+        System.Console.Read();
     }
 }
